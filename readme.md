@@ -1,36 +1,51 @@
 Description du besoin
 ===
 
-Nous souhaitons proposer au visiteur de draguignan-quartierdesarts.fr la possibilite de se geolocaliser.
+Nous souhaitons proposer au visiteur de https://www.draguignan-quartierdesarts.fr/ la possibilité de se géolocaliser.
 
-La premiere version etait basee sur google maps mais nous utilisons actuellement MapBox et WebGL.
+La première version était basée sur *Google Maps* mais nous utilisons actuellement les services de **MapBox** et la technologie **WebGL**.
 
-Cette carte viens en supplement des 3 cartes SVG integrees a la page d'accueil du site.
+Cette carte viens en supplément des 3 cartes SVG intégrées à la page d'accueil du site.
 
 
 Organisation du repo
 ===
 
-* Les fichiers a la racine sont les seuls necessaire au fonctionnement de la carte
-* Le dossier `outils_de_travail` contient des elements qui permettrons de faciliter le developpement (ajout de batiments... recuperer des donnees vectorielles)
-
+* Les fichiers *à la racine* sont les seuls nécessaire au fonctionnement de la carte
+* Le dossier `outils_de_travail` contient des éléments qui permettrons de faciliter le developpement (ajout de bâtiments... récuperer des données vectorielles)
 
 Le fichier qda-data.js
 ---
-contient deux tableaux permettant une recherche croisee.
+Contient deux tableaux multidimensionnels permettant une recherche croisée.
+Cette recherche croisée permettra de relier les informations historiques des batiments à leurs informations géographiques.
 
-* le premier tableau liste les rues. les rues (tableau imbrique) listent les numeros. pour chaque numero on stocke les coordonnes des points composant le batiment.
-Mis a part les anciens batiments detruits ou les futurs traveaux, ce sont des donnees plus ou moins "figees".
+* `numLoc`, Le premier tableau fait correspondre les coordonnées des batiments à leurs numeros respectifs.
+L'indexage est sous la forme `numLoc['rue']['num']` et renvoie un tableau de tuples longitude-latitude représentant les sommets du polygone.
+*Mis à part les anciens batiments détruits ou les futurs traveaux, ce sont des données plus ou moins **figées**.*
 
-* le deuxieme tableau liste 3 tableaux (un par periodes). ces tableaux imbriques ont la meme structure rue->numero.
-Au lieu d'indexer des coordonnes, nous indexons le texte a afficher dans le tooltip. Ces donnees sont sujetes a de frequents changement (nouveaux artisans etc...)
+* `eraLayers`, le deuxième tableau, fait correspondre -- pour une période donnée -- les noms de commerces aux batiments concernés (texte du tool-tip).
+Pour chaque période on retrouve un tableau similaire à numLoc. La forme est `eraLayers['era']['rue']['num']`.
+*Ces données, surtout pour le layer contemporain, vont **changer fréquemment** (nouveaux artisans etc...).*
 
+Contient également deux fonctions "helpers" permettant de générer une collection d'objets "Feature".
+"Feature" est une classe GeoJSON (un des formats principaux pour Mapbox WebGL)
+
+la première fonction, `parseStreetEra(rue, era)`, parcours une rue pour une periode seulement. (c'est une sous-fonction pour générer la suivante).
+la deuxième fonction, `parseEra(era)`, appelle la première fonction sur chaque rue, cela permets d'avoir la liste complète pour une période.
 
 Le fichier mapbox-qda-helpers.js
 ---
 
+En premier lieu nous trouvons le tableau `periodesInfo` qui va se remplir grace aux fonctions dans `qda-data.js`.
+Ce tableau fait correspondre le nom de la periode à sa liste de features et sa couleur.
+
+Nous trouvons ensuite des fonctions helpers permettant de generer les "sources" de données et les layers correspondants.
+La liste de features precedemment crée nous permets de renseigner nos sources. A chacune d'elles correspondra un layer que l'on peut afficher ou non.
+
+La fonction `populateNavMenu()` va permettre de créer des bouttons (en dessous du lien vers l'accueil) et de leur associer un comportement "radio" qui permettra de ne jamais avoir deux layers de periodes differentes en meme temps.
+
 Contient :
- * l'ajout des source et des layer a partir de nos donnees (on genere une liste de "Feature" (classe specifique au GeoJSON)
+ * l'ajout des sources et des layers à partir de nos données (on genere une liste de "Feature" (classe specifique au GeoJSON)
  * les fonctions pour le tooltip flottant (mouse events)
  * Generation de "Bouttons"/"Radio" pour choisir le layer a afficher
 
@@ -38,5 +53,7 @@ Contient :
 Le fichier mapboxInit.js
 ---
 
-Code de base de la carte (le point d'entree)
-
+Code de base de la carte (le point d'entrée)
+Pour plus d'infos se rendre sur https://docs.mapbox.com/mapbox-gl-js/example/
+Cela permets de se familiariser avec la documentation et les convensions utilisées par la communauté de développeurs MapBox.
+La plupart des fonctionnalitées y sont illustrées.
