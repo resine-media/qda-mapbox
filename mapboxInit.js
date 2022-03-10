@@ -91,7 +91,9 @@ map.on('load', () => {
   
   // Par defaut c'est le Layer Contemporain qui est visible
   map.setLayoutProperty('PlacesMod', 'visibility', 'none'); // on cache Moderne
+  map.setLayoutProperty('PlacesMod-borders', 'visibility', 'none');
   map.setLayoutProperty('PlacesHist','visibility', 'none'); // on cache Historique
+  map.setLayoutProperty('PlacesHist-borders', 'visibility', 'none');
 
   periodesInfo.forEach( e => addMouseEvents(e.id)); // on ajoute les EventListeners
   

@@ -41,6 +41,17 @@ function addLayerHelper(era) {
       ]
     }
   });
+
+  map.addLayer({
+    'id': era.id+'-borders',
+    'type': 'line',
+    'source': era.id,
+    'layout': {},
+    'paint': {
+      'line-color': era.color,
+      'line-width': 2
+    }
+  });
 }
 
 
@@ -125,10 +136,12 @@ function populateNavMenu() {
       e.stopPropagation();
 
       map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+      map.setLayoutProperty(clickedLayer+'-borders', 'visibility', 'visible');
 
       for ( const layer of periodesInfo ) {
         if ( layer.id != clickedLayer ) {
           map.setLayoutProperty(layer.id, 'visibility', 'none');
+          map.setLayoutProperty(layer.id+'-borders', 'visibility', 'none');
         }
       }
     };

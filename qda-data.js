@@ -68,7 +68,7 @@ function parseStreetEra(street, era) {
     strFeatList.push( Object.assign( {
      'type'      : 'Feature',
      'properties': { 
-        'description': eraLayers[era][street][bat], 
+        'description': "<center>numéro "+bat+" : </center><br/>"+eraLayers[era][street][bat], 
         'link':        'n-'+n(bat)+street+'/#toggle-id-'+getAnchorIndex(era)
       },
      'geometry'  : { 
