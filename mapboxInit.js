@@ -72,7 +72,7 @@ map.on('load', () => {
         //popupShow(e);
       }
     });
-    //map.on('mousemove', id, e => popupShow(e));
+    map.on('mousemove', id, e => popupShow(e));
     map.on('mouseleave', id, e => {
       if (hoveredStateId !== null) {
         map.setFeatureState(

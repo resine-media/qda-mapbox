@@ -37,7 +37,7 @@ function addLayerHelper(era) {
         'case',
         ['boolean', ['feature-state', 'hover'], false],
         1,
-        0.2
+        0.5
       ]
     }
   });
