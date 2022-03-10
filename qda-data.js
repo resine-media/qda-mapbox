@@ -17,6 +17,41 @@
 * en evitant les repetitions.
 */
 
+/* fonction outil, permettant de faire correspondre 
+* le nom de la periode au numero pour l'ancre sur la 
+* page triptique (le lien ouvre sur la periode voulue)
+*/
+function getAnchorIndex(era) {
+  let result;
+  switch (era) {
+   case "Contemporain" :
+    result = 1;
+    break;
+   case "PlacesCont" :
+    result = 1;
+    break;
+   case "Moderne" :
+    result = 2;
+    break;
+   case "PlacesMod" :
+    result = 2;
+    break;
+   case "Historique" :
+    result = 3;
+    break;
+   case "PlacesHist" :
+    result = 3;
+    break;
+  }
+  return result;
+}
+
+/* prefixe n par zero si inferieur a 10 *
+/* ATTENTION NE PAS DEPASSER 99 */
+function n(n) {
+  return n > 9 ? "" + n: "0" + n;
+}
+
 function parseStreetEra(street, era) {
 /* Cette fonction retourne tous les batiments
 * d'une rue seulement et pour une epoque uniquement
@@ -34,7 +69,7 @@ function parseStreetEra(street, era) {
      'type'      : 'Feature',
      'properties': { 
         'description': eraLayers[era][street][bat], 
-        'link':        'n-'+bat+street
+        'link':        'n-'+n(bat)+street+'/#toggle-id-'+getAnchorIndex(era)
       },
      'geometry'  : { 
         'type': 'Polygon',
