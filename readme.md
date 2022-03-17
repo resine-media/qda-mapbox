@@ -30,13 +30,13 @@ Pour chaque période on retrouve un tableau similaire à numLoc. La forme est `e
 Contient également deux fonctions "helpers" permettant de générer une collection d'objets "Feature".
 "Feature" est une classe GeoJSON (un des formats principaux pour Mapbox WebGL)
 
-la première fonction, `parseStreetEra(rue, era)`, parcours une rue pour une periode seulement. (c'est une sous-fonction pour générer la suivante).
+la première fonction, `parseStreetEra(street, era)`, parcours une rue pour une periode seulement. (c'est une sous-fonction pour générer la suivante).
 la deuxième fonction, `parseEra(era)`, appelle la première fonction sur chaque rue, cela permets d'avoir la liste complète pour une période.
 
 Le fichier mapbox-qda-helpers.js
 ---
 
-En premier lieu nous trouvons le tableau `periodesInfo` qui va se remplir grace aux fonctions dans `qda-data.js`.
+En premier lieu nous trouvons le tableau `eraInfo` qui va se remplir grace aux fonctions dans `qda-data.js`.
 Ce tableau fait correspondre le nom de la periode à sa liste de features et sa couleur.
 
 Nous trouvons ensuite des fonctions helpers permettant de generer les "sources" de données et les layers correspondants.

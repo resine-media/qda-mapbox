@@ -4,7 +4,7 @@
 *  Ce tableau permets un code plus concis via l'utilisation des
 *  fonctions "helper" et des forEach (pour ajouter sources et layers...)
 */
-const periodesInfo = [
+const eraInfo = [
   {'id':"PlacesCont", 'features':parseEra("Contemporain"), 'color':"#bd5942"}, 
   {'id':"PlacesMod",  'features':parseEra("Moderne"),      'color':"#7EB77B"},
   {'id':"PlacesHist", 'features':parseEra("Historique"),   'color':"#40a7b8"}
@@ -93,39 +93,39 @@ function popupHide() {
 
 function populateNavMenu() {
   // Set up the toggle button for each layer.
-  for (const periode of periodesInfo) {
+  for (const era of eraInfo) {
     
     // Skip layers that already have a button set up.
-    if (document.getElementById(periode.id)) { continue; }
+    if (document.getElementById(era.id)) { continue; }
    
     // Create radio and label elements for the layer selector.
     const radio = document.createElement('input');
     const label = document.createElement('label');
 
     // common setup
-    radio.id   = periode.id;
+    radio.id   = era.id;
     radio.type = "radio";
     radio.name = "era";
-    label.htmlFor  = periode.id;
+    label.htmlFor  = era.id;
 
     // custom settings for each Era
-    switch (periode.id) {
+    switch (era.id) {
       case 'PlacesCont' : 
         label.textContent = 'Artisans actuels';
-        label.style = "background: "+periode.color+";"
+        label.style = "background: "+era.color+";"
         break;
       case 'PlacesMod'  : 
         label.textContent  = "l\'Âge d\'or";
-        label.style = "background:"+periode.color+";"
+        label.style = "background:"+era.color+";"
         break;
       case 'PlacesHist' :
         label.textContent = 'Période Médiéveale';
-        label.style = "background: "+periode.color+";"
+        label.style = "background: "+era.color+";"
         break;
     }
     
     // check the default view
-    if (periode.id == 'PlacesCont') { radio.checked = true; }
+    if (era.id == 'PlacesCont') { radio.checked = true; }
    
     // en cliquant sur le label on declanche l'event onChange du radio correspondant
     radio.onchange = function (e) {
@@ -136,7 +136,7 @@ function populateNavMenu() {
       map.setLayoutProperty(clickedLayer+'-layer', 'visibility', 'visible');
       map.setLayoutProperty(clickedLayer+'-borders', 'visibility', 'visible');
 
-      for ( const layer of periodesInfo ) {
+      for ( const layer of eraInfo ) {
         if ( layer.id != clickedLayer ) {
           map.setLayoutProperty(layer.id+'-layer', 'visibility', 'none');
           map.setLayoutProperty(layer.id+'-borders', 'visibility', 'none');

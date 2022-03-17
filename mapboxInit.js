@@ -67,8 +67,8 @@ map.addControl(
 map.on('load', () => {
 
   /* On ajoute nos "Sources" de donnes geographiques (la liste des batiments pour chaque periode) */
-  periodesInfo.forEach( e => addSourceHelper(e));
-  periodesInfo.forEach( e => addLayerHelper(e));  // On cree un "Layer" par "Source"
+  eraInfo.forEach( e => addSourceHelper(e));
+  eraInfo.forEach( e => addLayerHelper(e));  // On cree un "Layer" par "Source"
 
   function addMouseEvents(src_id) {
     map.on('mousemove', src_id+'-layer', (e) => {
@@ -103,7 +103,7 @@ map.on('load', () => {
     });
   }
 
-  periodesInfo.forEach( source => addMouseEvents(source.id)); // on ajoute les EventListeners
+  eraInfo.forEach( source => addMouseEvents(source.id)); // on ajoute les EventListeners
   // Par defaut c'est le Layer Contemporain qui est visible
   map.setLayoutProperty('PlacesMod-layer',    'visibility', 'none'); // on cache Moderne
   map.setLayoutProperty('PlacesMod-borders',  'visibility', 'none');
@@ -122,7 +122,7 @@ map.on('load', () => {
 });
 
 map.on('idle', () => {
-  
+
   // Abort if these layers were not added to the map
   if (!map.getLayer('PlacesHist-layer') || !map.getLayer('PlacesMod-layer') || !map.getLayer('PlacesCont-layer')) {  return;  }
      
