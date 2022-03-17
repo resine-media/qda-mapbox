@@ -2,7 +2,7 @@
 
 /* Pour chaque periode on a un id et une couleur associee
 *  Ce tableau permets un code plus concis via l'utilisation des
-*  fonctions "helper" et des forEach (ajouter sources et layers...)
+*  fonctions "helper" et des forEach (pour ajouter sources et layers...)
 */
 const periodesInfo = [
   {'id':"PlacesCont", 'features':parseEra("Contemporain"), 'color':"#bd5942"}, 
@@ -37,7 +37,7 @@ function addLayerHelper(era) {
         'case',
         ['boolean', ['feature-state', 'hover'], false],
         1,
-        0.5
+        0.4
       ]
     }
   });
@@ -53,8 +53,6 @@ function addLayerHelper(era) {
     }
   });
 }
-
-
 
 // --------- *** INFO BULLE *** ----------
 

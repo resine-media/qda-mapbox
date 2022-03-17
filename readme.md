@@ -20,11 +20,11 @@ Contient deux tableaux multidimensionnels permettant une recherche croisée.
 Cette recherche croisée permettra de relier les informations historiques des batiments à leurs informations géographiques.
 
 * `numLoc`, Le premier tableau fait correspondre les coordonnées des batiments à leurs numeros respectifs.
-L'indexage est sous la forme `numLoc['rue']['num']` et renvoie un tableau de tuples longitude-latitude représentant les sommets du polygone.
-*Mis à part les anciens batiments détruits ou les futurs traveaux, ce sont des données plus ou moins **figées**.*
+L'indexage est sous la forme `numLoc['street']['num']` et renvoie un tableau de tuples longitude-latitude représentant les sommets du polygone.
+*Mis à part les anciens batiments détruits ou les futurs travaux, ce sont des données plus ou moins **figées**.*
 
 * `eraLayers`, le deuxième tableau, fait correspondre -- pour une période donnée -- les noms de commerces aux batiments concernés (texte du tool-tip).
-Pour chaque période on retrouve un tableau similaire à numLoc. La forme est `eraLayers['era']['rue']['num']`.
+Pour chaque période on retrouve un tableau similaire à numLoc. La forme est `eraLayers['era']['street']['num']`.
 *Ces données, surtout pour le layer contemporain, vont **changer fréquemment** (nouveaux artisans etc...).*
 
 Contient également deux fonctions "helpers" permettant de générer une collection d'objets "Feature".

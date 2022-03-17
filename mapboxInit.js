@@ -86,7 +86,7 @@ map.on('load', () => {
           { hover: true }
         );
         //map.getSource(src_id).setData();
-        //popupShow(e);
+        popupShow(e);
       }
     });
     // Permet d'avoir les info bulles au survol
@@ -99,7 +99,7 @@ map.on('load', () => {
         );
       }
       hoveredStateId = null;
-      //popupHide();
+      popupHide();
     });
   }
 
@@ -122,7 +122,7 @@ map.on('load', () => {
 });
 
 map.on('idle', () => {
-
+  
   // Abort if these layers were not added to the map
   if (!map.getLayer('PlacesHist-layer') || !map.getLayer('PlacesMod-layer') || !map.getLayer('PlacesCont-layer')) {  return;  }
      
