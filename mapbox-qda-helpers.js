@@ -27,7 +27,7 @@ function addSourceHelper(era) {
 /* Un Layer permets d'afficher une source */
 function addLayerHelper(era) {
   map.addLayer({
-    'id':     era.id,
+    'id':     era.id+'-layer',
     'type':   'fill',
     'source': era.id,
     'layout': {},
@@ -135,12 +135,12 @@ function populateNavMenu() {
       e.preventDefault();
       e.stopPropagation();
 
-      map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+      map.setLayoutProperty(clickedLayer+'-layer', 'visibility', 'visible');
       map.setLayoutProperty(clickedLayer+'-borders', 'visibility', 'visible');
 
       for ( const layer of periodesInfo ) {
         if ( layer.id != clickedLayer ) {
-          map.setLayoutProperty(layer.id, 'visibility', 'none');
+          map.setLayoutProperty(layer.id+'-layer', 'visibility', 'none');
           map.setLayoutProperty(layer.id+'-borders', 'visibility', 'none');
         }
       }
