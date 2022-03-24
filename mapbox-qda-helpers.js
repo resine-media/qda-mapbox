@@ -6,7 +6,7 @@
 */
 const eraInfo = [
   {'id':"PlacesCont", 'features':parseEra("Contemporain"), 'color':"#bd5942"}, 
-  {'id':"PlacesMod",  'features':parseEra("Moderne"),      'color':"#7EB77B"},
+  {'id':"PlacesMod",  'features':parseEra("Moderne"),      'color':"#6Ea76B"},
   {'id':"PlacesHist", 'features':parseEra("Historique"),   'color':"#40a7b8"}
 ];
 /* parseEra construit la collection de features pour une source
@@ -37,7 +37,7 @@ function addLayerHelper(era) {
         'case',
         ['boolean', ['feature-state', 'hover'], false],
         1,
-        0.4
+        0.5
       ]
     }
   });
@@ -93,10 +93,10 @@ function popupHide() {
 
 function populateNavMenu() {
   // Set up the toggle button for each layer.
-  for (const era of eraInfo) {
+  for (const era of eraInfo ) {
     
     // Skip layers that already have a button set up.
-    if (document.getElementById(era.id)) { continue; }
+    if ( document.getElementById(era.id) ) { continue; }
    
     // Create radio and label elements for the layer selector.
     const radio = document.createElement('input');
@@ -125,7 +125,7 @@ function populateNavMenu() {
     }
     
     // check the default view
-    if (era.id == 'PlacesCont') { radio.checked = true; }
+    if ( era.id == 'PlacesCont' ) { radio.checked = true; }
    
     // en cliquant sur le label on declanche l'event onChange du radio correspondant
     radio.onchange = function (e) {

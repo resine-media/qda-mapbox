@@ -11,9 +11,9 @@ if (window.screen.width-window.screen.height < 0)
 /* sinon paysage*/ else { bearing =  50; }
 
 // varier le zoom en fonction de la taille
-if      (window.screen.width >= 1920 ) { zoom = 18.73 }
-else if (window.screen.width >= 1280 ) { zoom = 18 }
-else                 /* on 800*600 */  { zoom = 17.35 }
+if      (window.screen.width >= 1920 ) { zoom = 18.73; }
+else if (window.screen.width >= 1280 ) { zoom = 18; }
+else                 /* on 800*600 */  { zoom = 17.35; }
 // fin calcul
 
 mapboxgl.accessToken = 'pk.eyJ1IjoibWF0aGlhc3Jlc2luZSIsImEiOiJja3Uzc3gwOWsydW14MzBwOGU2MHpxZHJiIn0.-d9PNnwjFaiqz9S5ho9IBQ';
@@ -129,7 +129,7 @@ map.on('idle', () => {
   populateNavMenu();
 });
 
-map.on('draw_update', sourceRefresh);
+//map.on('draw_update', sourceRefresh());
 
 function sourceRefresh(e) {
   var data = draw.getAll();

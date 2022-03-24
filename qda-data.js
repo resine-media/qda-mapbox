@@ -52,31 +52,38 @@ function n(n) {
   return n > 9 ? "" + n: "0" + n;
 }
 
+// SET FEATURE STATE NEEDS AN ID !
+//https://github.com/mapbox/mapbox-gl-js/issues/6849
+
 function parseStreetEra(street, era) {
 /* Cette fonction retourne tous les batiments
 * d'une rue seulement et pour une epoque uniquement
 * Elle est appellee par la fonction "parseEra" (pas d'autre utilite)
 */
   let strFeatList = [];
-  
+  let i = 1;
   for (let bat in eraLayers[era][street]) {
   /* /!\ ici on parcours une rue seulement.
    * On cree une collection de Features (classe geoJSON) :
    * pour chaque batiment, on va inserer un objet dans le tableau (la collection).
    * et on renseigne la localisation et le message correspondant (voir eraLayers)
    */
+    let genId = era+"-"+street+"-"+i;
     strFeatList.push( Object.assign( {
      'type'      : 'Feature',
-     'properties': { 
+     'properties': {
+         "@id": "way/"+genId,
         'description': "<center>numéro "+bat+" : </center><br/>"+eraLayers[era][street][bat], 
         'link':        'n-'+n(bat)+street+'/#toggle-id-'+getAnchorIndex(era)
       },
      'geometry'  : { 
         'type': 'Polygon',
         'coordinates': numLoc[street][bat]
-      }
+      },
+      "id": "way/"+genId
     }
     ));
+    i += i;
   }
   return strFeatList;
 }
