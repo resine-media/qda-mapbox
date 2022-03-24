@@ -12,9 +12,16 @@
     <script type="text/javascript" src="https://api.mapbox.com/mapbox-gl-js/v2.5.0/mapbox-gl.js"></script>
 
     <!-- Donnees artisans / histoire -->
-    <script type="text/javascript" src="./qda-data.js"></script>
+    <!-- script type="text/javascript" src="./js-data/buildings_points.js"></script -->
+    <script type="text/javascript" src="./js-data/buildings_ways.js"></script>
+    <script type="text/javascript" src="./js-data/era_info.js"></script>
+
     <!-- Fonctions helpers et Tooltip (info bulle) -->
-    <script type="text/javascript" src="mapbox-qda-helpers.js"></script>
+    <script type="text/javascript" src="js-helpers/data_utils.js"></script>
+    <script type="text/javascript" src="js-helpers/mapbox_utils.js"></script>
+    <script type="text/javascript" src="js-helpers/mapbox_popup.js"></script>
+
+    <script type="text/javascript" src="js-main/functions.js"></script>
   </head>
   <body>
 
@@ -26,7 +33,10 @@
         </a>
       </nav>
     </div>
-    <script type="text/javascript" src="./mapboxInit.js"></script>
+
+    <!-- Instanciation de la map. ne pas deplacer -->
+    <script type="text/javascript" src="js-main/main.js"></script>
+    <script type="text/javascript" src="js-main/onload.js"></script>
 
   </body>
 </html>

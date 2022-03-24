@@ -1,0 +1,2 @@
+// SET FEATURE STATE NEEDS AN ID !
+//https://github.com/mapbox/mapbox-gl-js/issues/6849
