@@ -17,7 +17,7 @@ eraLayers = {
     "trans" : {
       "4"  : "Dog Station",
       "7"  : "Intemporel Déco",
-     // "9"  : "Caboch'Arts",
+      "9"  : "Caboch'Arts",
       "14" : "Au relieur",
       "19" : "Elephant Knives coutelier",
       "21" : "L'atelier des Nanas",
@@ -36,7 +36,7 @@ eraLayers = {
     },
     "marchands" : {
       "4"  : "Ribambelle et Co",
- //     "12" : "Boucherie traiteur Michel Frères",
+      "12" : "Boucherie traiteur Michel Frères",
       "14" : "Petite Agerola",
     },
     "marche" : {
@@ -56,7 +56,7 @@ eraLayers = {
        "2"  : "Bar «la rotonde»",
        "3"  : "Fromagerie",
        "4"  : "Magasin de pâtes Marie Garçin",
-      // "5"  : "Coiffeur pour dames « Vartan »", 
+    // "5"  : "Coiffeur pour dames « Vartan »", 
        "6"  : "Restaurant « la niçoise »",
        "8"  : "Triperie « Pastouret »",
       "10"  : "Tailleur « Tito Nannelli »",
@@ -93,7 +93,7 @@ eraLayers = {
        "9" : "Quincailler « GOIRAND » Vente",
       "10" : "Opticien Auguste Grel",
       "11" : "Repasseuse Marzet",
-     // "12" : "Machines à écrire « PREJEAN »",
+      "12" : "Machines à écrire « PREJEAN »",
       "14" : "Epicerie DEMAZIERES",
     },
     "herbes" : {
@@ -111,11 +111,11 @@ eraLayers = {
       "2" : "maison Revaute",
       "3" : "maison Surle",
       "4" : "maison Ferrier",
-   //   "5" : "maison Cavasse",
+   // "5" : "maison Cavasse",
       "6" : "maison Bonnet",
       "7" : "maison Andre",
       "8" : "maison Gues",
- //     "9" : "maison Giboin",
+      "9" : "maison Giboin",
       "10" : "maison Provido",
       "12" : "maison Donadey",
       "14" : "maison Donadey",
@@ -125,7 +125,7 @@ eraLayers = {
       "22" : "maison Vassal",
       "24" : "maison Ferraud",
       "28" : "maison Maunier",
-   //   "32" : "maison Truc",
+      "32" : "maison Truc",
       "34" : "hotellerie Fleur de Lys",
       "38" : "maison Fauchat",
       "42" : "maison Clavier",
@@ -151,7 +151,7 @@ eraLayers = {
        "9" : "maison Cadish",
       "10" : "maison Giraud",
       "11" : "maison Sivan",
- //     "12" : "maison Sivan",
+      "12" : "maison Sivan",
       "13" : "maison Missimilly"
     },
     "herbes" : {

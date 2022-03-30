@@ -80,7 +80,7 @@ function parseStreetEra(street, era) {
      'type'      : 'Feature',
      'properties': {
          "@id": "way/"+genId,
-        'description': "<center>numéro "+bat+" : </center><br/>"+eraLayers[era][street][bat], 
+        'description': "<center> - numéro "+bat+" - </center><br><center>"+eraLayers[era][street][bat]+"</center>", 
         'link':        'n-'+n(bat)+street+'/#toggle-id-'+getAnchorIndex(era)
       },
      'geometry'  : { 
