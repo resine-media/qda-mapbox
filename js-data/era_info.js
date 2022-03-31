@@ -15,13 +15,16 @@ streets = ["trans", "marchands", "marche", "herbes"],
 eraLayers = {
   "Contemporain" : {
     "trans" : {
+      "3"  : "R'eve",
       "4"  : "Dog Station",
       "7"  : "Intemporel Déco",
+      "8"  : "Infini'tifs",
       "9"  : "Caboch'Arts",
       "14" : "Au relieur",
       "19" : "Elephant Knives coutelier",
-      "21" : "L'atelier des Nanas",
+      "21" : "O Clair des Pierres",
       "23" : "L'atelier de Myr",
+      "24" : "Le comptoir de Nelly",
       "27" : "Smart Candle 83",
       "28" : "Dracart",
       "30" : "Le k-fé inventé",
@@ -35,7 +38,10 @@ eraLayers = {
       "65" : "Cayssials Tennis",
     },
     "marchands" : {
+      "1"  : "Snack chez Loua",
+      "1B" : "Serge Contat",
       "4"  : "Ribambelle et Co",
+      "8"  : "Atelier JDA",
       "12" : "Boucherie traiteur Michel Frères",
       "14" : "Petite Agerola",
     },
@@ -45,7 +51,8 @@ eraLayers = {
     },
     "herbes" : {
       "2"  : "Les 1000 Colonnes Bar Restaurant",
-      "3"  : "Tatoo Look",
+      "3"  : "Old Street",
+      "6"  : "Briollo by Lores",
       "7"  : "Pharmacie Herboristerie Reybaud",
       "8"  : "L'homme by S",
       "12" : "Anh Dao Traiteur",
