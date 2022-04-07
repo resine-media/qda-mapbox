@@ -58,3 +58,14 @@ function populateNavMenu() {
     eraSelector.appendChild(label);
   }
 }
+
+/* ne fonctionne pas (hover declanché au zoom avec la molette mais pas au survol...)
+  l'objectif etait de forcer l'update des 'features states'.
+*/
+function sourceRefresh(e) {
+  var data = draw.getAll();
+  map.getSource('PlacesCont').setData(data);
+  map.getSource('PlacesHist').setData(data);
+  map.getSource('PlacesMod').setData(data);
+  map.update();
+};

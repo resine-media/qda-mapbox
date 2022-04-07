@@ -152,7 +152,7 @@ eraLayers = {
        "2" : "maison Digites",
        "3" : "maison Caussemille",
        "4" : "maison Barbaroux",
-       "6" : "maison Reboul",
+       "6" : "chapelle clandestine de Thereson",
        "7" : "maison Laugier",
        "8" : "maison Clavel",
        "9" : "maison Cadish",

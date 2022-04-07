@@ -72,11 +72,3 @@ map.on('idle', () => {
 });
 
 //map.on('draw_update', sourceRefresh());
-
-function sourceRefresh(e) {
-  var data = draw.getAll();
-  map.getSource('PlacesCont').setData(data);
-  map.getSource('PlacesHist').setData(data);
-  map.getSource('PlacesMod').setData(data);
-  map.update();
-};
