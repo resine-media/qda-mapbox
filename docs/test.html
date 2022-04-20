@@ -1,0 +1,271 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
+</head>
+
+<body class="stackedit">
+  <div class="stackedit__left">
+    <div class="stackedit__toc">
+      
+<ul>
+<li><a href="#document-pour-la-carte-en-3d-avec-géolocalisation">Document pour la carte en 3D avec Géolocalisation</a></li>
+<li><a href="#partie-i---tutoriel">Partie I - Tutoriel</a>
+<ul>
+<li><a href="#prérequis---accès-ftp">Prérequis - Accès FTP</a></li>
+<li><a href="#naviguer-sur-le-serveur---récupérer-le-bon-fichier">Naviguer sur le serveur - Récupérer le bon fichier</a></li>
+<li><a href="#ajouter-un-numéro-interactif-artisan-ou-info-historique">Ajouter un numéro interactif (Artisan ou info historique)</a></li>
+</ul>
+</li>
+<li><a href="#partie-ii---info-pour-les-développeurs">PARTIE II - Info pour les Développeurs</a>
+<ul>
+<li><a href="#notes">Notes</a></li>
+<li><a href="#arborescence-du-projet">Arborescence du projet</a></li>
+</ul>
+</li>
+<li><a href="#résolution-de-problème">Résolution de Problème</a>
+<ul>
+<li><a href="#problème-daffichage">Problème d’affichage</a></li>
+<li><a href="#problème-de-lien">Problème de lien</a></li>
+<li><a href="#géométrie-des-bâtiments">Géométrie des bâtiments</a>
+<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+  <div class="stackedit__right">
+    <div class="stackedit__html">
+      <h1 id="document-pour-la-carte-en-3d-avec-géolocalisation">Document pour la carte en 3D avec Géolocalisation</h1>
+<h1 id="partie-i---tutoriel">Partie I - Tutoriel</h1>
+<h2 id="prérequis---accès-ftp">Prérequis - Accès FTP</h2>
+<p>Pour mettre à jour les artisans sur les différents numéros il faut tout d’abord <strong>avoir accès au serveur.</strong><br>
+Nous utilisons FTP (un protocole réseau qui permet de transférer des fichiers de votre pc vers le serveur, ou l’inverse : de récupérer les fichiers du serveur pour les mettre sur votre pc).<br>
+<strong>Le logiciel Filezilla permets d’utiliser FTP très facilement.</strong></p>
+<p>Vous avez besoin des éléments fournis par OVH :</p>
+<ol>
+<li>l’<strong>adresse</strong> pour accéder au service FTP du serveur.</li>
+<li>le <strong>nom d’utilisateur</strong> et le <strong>mot de passe</strong> pour la connexion.</li>
+</ol>
+<blockquote>
+<p><em>Ces informations peuvent être retrouvées facilement sur Filezilla sur le POSTE 05.<br>
+(en favori dans le gestionnaire de sites)</em></p>
+</blockquote>
+<p><img src="./connexion.png" alt=""></p>
+<h2 id="naviguer-sur-le-serveur---récupérer-le-bon-fichier">Naviguer sur le serveur - Récupérer le bon fichier</h2>
+<ol>
+<li>
+<p>Une fois connecté il faut aller dans 📁<code>/www/quartierdesarts/carte/js-data</code>.</p>
+</li>
+<li>
+<p>Télécharger et éditer (ouvrir) le fichier 📄<code>era_infos.js</code>.</p>
+</li>
+</ol>
+<p><img src="./dnd1.png" alt=""></p>
+<h2 id="ajouter-un-numéro-interactif-artisan-ou-info-historique">Ajouter un numéro interactif (Artisan ou info historique)</h2>
+<p><strong>Dans le fichier <code>era_info.js</code> ce qui nous intéresse est entre les accolades <code>{</code> et <code>}</code> après <code>eraLayer</code> à partir de la ligne 15.</strong></p>
+<blockquote>
+<p>On peut ignorer les premières lignes (<code>const</code>, <code>streets = [...]</code>,  etc).<br>
+On peut lire les notes en commentaire : tout ce qui est entre <code>/* */</code>.</p>
+</blockquote>
+<ol>
+<li>Aller à la période voulue puis trouver la rue pour laquelle on veut ajouter un numéro.<br>
+<img src="./struct.png" alt="enter image description here"></li>
+<li>Ajouter une ligne <em>en respectant la syntaxe</em>. La ligne doit contenir le numéro et le texte à afficher au survol du bâtiment.</li>
+</ol>
+<blockquote>
+<p><strong>Par exemple</strong> :<br>
+<code>"02" : "maison Truc",</code><br>
+la virgule de fin de ligne <strong>est très importante</strong>.</p>
+</blockquote>
+<blockquote>
+<p><strong>Imbrication</strong> : <em>On peut imager la structure du code comme des boites dans des boites.<br>
+Les numéros sont rangés par rues, et on retrouve cette structure pour chaque période.</em></p>
+</blockquote>
+<blockquote>
+<p><strong>Cohérence</strong> : Ces “boites” sont délimites par des accolades qui fonctionnent par paires : à une ouvrante correspond une fermante.<br>
+Elle ne peuvent pas se croiser, c’est a dire qu’une fermante correspond toujours a l’ouvrante précédente.</p>
+</blockquote>
+<ol start="3">
+<li>
+<p>Enregistrer le fichier</p>
+</li>
+<li>
+<p>Déposer le fichier sur le serveur après enregistrement.</p>
+</li>
+</ol>
+<blockquote>
+<p>Utilisez FilleZilla et allez dans <code>/www/quartierdesarts/carte/js-data</code>. Faites glisser déposer puis valider le remplacement du fichier.</p>
+</blockquote>
+<p><img src="./dnd2.png" alt="enter image description here"></p>
+<h1 id="partie-ii---info-pour-les-développeurs">PARTIE II - Info pour les Développeurs</h1>
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Attention en JS les tableaux associatifs sont des <code>object</code> et non des <code>array</code> (pas de méthode <code>forEach</code>).</li>
+<li>dans le code <code>era</code> se traduit en français par <code>période</code>.</li>
+<li>un <code>Node</code> est un tuple longitude-latitude (en clair c’est un point géographique)</li>
+</ul>
+<blockquote>
+<p>Ça se présente sous la forme d’un Array en JS et JSON : <code>[lon, lat]</code><br>
+Il faut respecter l’ordre : longitude en premier.</p>
+</blockquote>
+<ul>
+<li>un <code>Way</code> est une liste de <code>Nodes</code>. sous la forme :<br>
+<code>[[ [lon1, lat1], [lon2, lat2], [lon3, lat3], [lon1, lat1] ]]</code></li>
+</ul>
+<blockquote>
+<p>Notez l’utilisation d’un double crochet au début et a la fin. Aussi nos tracés seront tous fermés, donc on mets le même point au début et a la fin. L’exemple donné est donc un triangle, pas un quadrilatère.</p>
+</blockquote>
+<h2 id="arborescence-du-projet">Arborescence du projet</h2>
+<p>Les <strong>scripts</strong> sont repartis en <strong>3 dossiers</strong> dont le nom commence par le préfixe <code>js</code></p>
+<ul>
+<li>
+<p><strong>📁<code>js-data</code></strong> : contient les données nécessaire pour construire les sources et les layers.</p>
+<ul>
+<li><strong>📄<code>era_info.js</code></strong> : fait correspondre pour chaque période les numéros des rues (bâtiments) aux infos historiques (occupants)</li>
+</ul>
+<p>il y a un tableau <code>streets</code> qui répertorie les rues.</p>
+<p>il y a un tableau associatif multidimensionnel <code>eraLayers</code> qui permets d’établir la correspondance précédemment citée.</p>
+<p>l’imbrication est sous cette forme :<br>
+<code>eraLayers[epoque][rue][numero] -&gt; "attribut title au survol"</code></p>
+<ul>
+<li>les fichiers 📄<code>buildings_points.js</code> <em><strong>OU</strong></em> 📄<code>buildings_ways.js</code> :
+<ul>
+<li>
+<p><strong>📄<code>buildings_points.js</code></strong><br>
+Permets d’associer chaque bâtiment à un tuple [lon, lat] qui permets d’afficher une pastille en leur centre.<br>
+(n’est plus utilisé. On le garde au cas ou on ne veut plus les ways.)</p>
+</li>
+<li>
+<p><strong>📄<code>buildings_ways.js</code></strong><br>
+Le second utilise une liste de tuples [lon, lat] permettant de délimiter entièrement le bâtiment.<br>
+(c’est un <strong>Path SVG</strong>, le nom <strong>way</strong> provient de la nomenclature OSM et Mapbox).</p>
+</li>
+</ul>
+<blockquote>
+<p>ces fichiers sont mutuellement exclusifs. Ne pas inclure les 2 sur la page index.html.<br>
+Actuellement nous utilisons <code>buildings_ways.js</code>.</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>📁<code>js-helper</code> :</strong><br>
+contient des fonctions de construction pour éviter les répétitions de code.</p>
+<ul>
+<li>
+<p><strong>📄<code>data_utils.js</code> :</strong><br>
+permets de parcourir le tableau <code>eraLayers</code> et de créer les “sources” mapbox (collection de “features” avec la syntaxe propre a GeoJSON).</p>
+</li>
+<li>
+<p><strong>📄<code>mapbox_utils.js</code> :</strong><br>
+fonctions pour ajouter les sources et paramétrer les layers correspondants (identifiants, codes couleur etc…).</p>
+</li>
+<li>
+<p><strong>📄<code>mapbox_popup.js</code> :</strong><br>
+instancie le popup (élément HTML masqué). Fonctions pour afficher et masquer de nouveau.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>📁<code>js-main</code> :</strong><br>
+contient les scripts principaux</p>
+<ul>
+<li>
+<p><strong>📄<code>function.js</code> :</strong><br>
+Fonctions principales. Pour l’instant ce fichier contient la fonction <code>populateNavMenu()</code> qui permets de créer les 3 boutons colorés en haut a gauche. Ces boutons permettent de choisir le layer (la période) que l’on veut afficher.</p>
+</li>
+<li>
+<p><strong>📄<code>main.js</code> :</strong><br>
+Le “point d’entrée”. Ici on a une brève procédure de calcul du zoom et de l’orientation (s’adapte a la taille de l’écran et a son orientation) puis <strong>on instancie la map</strong>.<br>
+On ajoute des contrôles (pour le zoom et l’orientation) puis <code>on idle</code> on vérifie la présence des layers avant d’appeler la fonction de construction du menu.</p>
+</li>
+<li>
+<p><strong>📄<code>onload.js</code> :</strong><br>
+se declanche <strong>apres</strong> l’instanciation de la carte mais <strong>avant</strong> <code>on idle</code>.<br>
+Charge les sources et Layers associés. Associe les évènement <code>mouseleave</code> et <code>mouseenter</code> aux fonctions de popup.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="résolution-de-problème">Résolution de Problème</h1>
+<h2 id="problème-daffichage">Problème d’affichage</h2>
+<p>Si ça ne marche pas (le bâtiment ajouté ne s’affiche pas, ou pire : plus aucun ne s’affiche voir même la page blanche !) alors :</p>
+<ul>
+<li>vérifier qu’il ne manque pas une virgule de fin de ligne dans le tableau.</li>
+<li>ajouter le bâtiment manquant dans 📄<code>buildings_ways.js</code>. (en principe ils y sont tous sauf le <em>5 rue de trans</em>…)</li>
+</ul>
+<h2 id="problème-de-lien">Problème de lien</h2>
+<p>Pour que la carte fonctionne bien il faut s’assurer que tous les permaliens des articles “numéros” sur le site Wordpress respectent la convention de nommage.</p>
+<p>Le modèle à suivre est : <code>n-00rue</code></p>
+<blockquote>
+<p>exemple : <a href="https://www.draguignan-quartierdesarts.fr/n-03trans/">https://www.draguignan-quartierdesarts.fr/n-03trans/</a></p>
+</blockquote>
+<ol>
+<li>remplacer <code>00</code> par le numéro de rue concerné.</li>
+</ol>
+<blockquote>
+<p>si inférieur à 9, préfixer un zéro.<br>
+exemples : 01, 02,… 09, 10</p>
+</blockquote>
+<ol start="2">
+<li>remplacer <code>rue</code> par le nom de la rue ou de la place, parmi les suivant :
+<ul>
+<li><code>trans</code> pour la rue de trans</li>
+<li><code>marchands</code> pour la rue des marchands</li>
+<li><code>marche</code> pour la place du marché</li>
+<li><code>herbes</code> pour la place aux herbes.</li>
+</ul>
+</li>
+</ol>
+<p>On peut changer un permalien sur le backoffice : tout en haut de la page on clique sur modifier a côté du lien. A modifier uniquement si le modèle ci-dessus n’est pas respecté.</p>
+<h2 id="géométrie-des-bâtiments">Géométrie des bâtiments</h2>
+<p>Vous pouvez utiliser <a href="https://overpass-turbo.eu/">https://overpass-turbo.eu/</a> pour récupérer la liste des <code>Nodes</code> (points) du contour d’un bâtiment.<br>
+Ce site n’est pas facile a utiliser pour un débutant, mais c’est l’outil le plus pratique que j’ai trouvé.</p>
+<h4 id="requête-overpass-turbo---fonctionnement-de-lencadrement-">Requête Overpass-turbo - fonctionnement de l’Encadrement :</h4>
+<p>Pour vous faciliter la vie voici une requête qui récupère les bons bâtiments (ceux du quartier et ses alentours) :</p>
+<p><code>way(43.53683327522896, 6.465939466740622, 43.53902059106164, 6.468409571101574)[building=yes]; (._;&gt;;); out;</code></p>
+<p>La requête récupère tous les <strong>Ways</strong> de type <strong>Building</strong>, dans le cadre délimité par l’encadrement : <code>43.53683327522896,6.465939466740622, 43.53902059106164,6.468409571101574</code>.</p>
+<blockquote>
+<p>Le cadre commence toujours par la latitude la plus basse, suivie par la longitude la plus basse, puis la latitude la plus haute, suivie de la longitude la plus haute.</p>
+</blockquote>
+<p>En clair on peu résumer comme cela : point Sud-Ouest, point Nord-Est<br>
+avec pour chaque point la latitude avant la longitude.</p>
+<blockquote>
+<p>on définie une diagonale dans ce sens : “/” en commençant par le bas et nous avons notre cadre (Bounding Box en anglais).</p>
+</blockquote>
+<p>voici la <strong>doc</strong> pour l’<strong>API</strong> (a lire avant) : <a href="https://wiki.openstreetmap.org/wiki/Overpass_API">https://wiki.openstreetmap.org/wiki/Overpass_API</a><br>
+voici la <strong>doc</strong> pour la <strong>syntaxe</strong> ⚠️ <em>hic sunt dracones</em> 🐉 : <a href="https://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide">https://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide</a></p>
+<h4 id="éditer-un-way-polygone---ensemble-de-nodes-point-pour-le-contour-des-bâtiments">Éditer un <code>Way</code> (polygone) - ensemble de <code>Nodes</code> (point) pour le contour des bâtiments</h4>
+<p>Si deux numéros sont fusionnés (considéré comme un seul bâtiment sur OSM)</p>
+<blockquote>
+<p>Exemple : le bâtiment des <em>caboch’arts</em></p>
+</blockquote>
+<p>Ou si l’on cherche a recréer un bâtiment du passé qui a été détruit mais qui se trouve entre deux autres bâtiments</p>
+<blockquote>
+<p>Exemple : le <em>numéro 32 rue de trans</em> est maintenant <em>la Traverse du palais</em>.</p>
+</blockquote>
+<p>alors il faut éditer la liste des coordonnées en se basant sur les bâtiments voisins.<br>
+Ce n’est pas évidant a première vue, mais avec un peu d’astuce on peut s’épargner des difficultés.</p>
+<blockquote>
+<p>Le problème vient de la complexité des nombres représentant les latitudes et longitudes, en plus du fait que les distances entre les points considérés soit très courtes. Seules les décimales les moins significatives changent et la comparaison sur une longue liste n’est pas triviale.</p>
+</blockquote>
+<p>On peut supprimer temporairement un <code>Node</code> en enlevant une ligne “latitude - longitude” sur un bâtiment et observer le résultat sur le navigateur. (le polygone perds un sommet : vous avez identifié le point).<br>
+En procédant par élimination on peut trouver les points que l’on veut utiliser pour créer un autre bâtiment.</p>
+<blockquote>
+<p><strong>Attention</strong> : dans notre application un <code>Way</code> finira toujours par le même <code>Node</code> que celui par lequel il a commencé (ce sont des polygones fermés).</p>
+</blockquote>
+
+    </div>
+  </div>
+</body>
+
+</html>
