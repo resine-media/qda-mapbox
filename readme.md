@@ -1,7 +1,9 @@
 ﻿Document pour la carte en 3D avec Géolocalisation
 ===
 
-Partie I - Tutoriel
+https://www.draguignan-quartierdesarts.fr/carte
+
+Partie I - Tutoriel pour ajouter un artisan
 ===
 
 Prérequis - Accès FTP
@@ -29,7 +31,7 @@ Naviguer sur le serveur - Récupérer le bon fichier
 
 Ajouter un numéro interactif (Artisan ou info historique)
 ---
-**Dans le fichier `era_info.js` ce qui nous intéresse est entre les accolades `{` et `}` après `eraLayer` à partir de la ligne 15.**
+**Dans le fichier 📄`era_info.js` ce qui nous intéresse est entre les accolades `{` et `}` après `eraLayer` à partir de la ligne 15.**
 > On peut ignorer les premières lignes (`const`, `streets = [...]`,  etc).
 On peut lire les notes en commentaire : tout ce qui est entre `/*  */`.
 
@@ -49,11 +51,11 @@ Elle ne peuvent pas se croiser, c'est a dire qu'une fermante correspond toujours
 3. Enregistrer le fichier
 
 4. Déposer le fichier sur le serveur après enregistrement.
->Utilisez FilleZilla et allez dans `/www/quartierdesarts/carte/js-data`. Faites glisser déposer puis valider le remplacement du fichier.
+>Utilisez FilleZilla et allez dans 📁`/www/quartierdesarts/carte/js-data`. Faites glisser déposer puis valider le remplacement du fichier.
 
-![enter image description here](./docs/dnd2.png)
+![enter image description here](./docs/dnd2.PNG)
 
-PARTIE II - Info pour les Développeurs
+PARTIE II - Infos pour les Développeurs
 ===
 Notes
 ---
@@ -64,7 +66,7 @@ Notes
  Il faut respecter l'ordre : longitude en premier.
  * un `Way` est une liste de `Nodes`. sous la forme :
    `[[ [lon1, lat1], [lon2, lat2], [lon3, lat3], [lon1, lat1] ]]`
- >Notez l'utilisation d'un double crochet au début et a la fin. Aussi nos tracés seront tous fermés, donc on mets le même point au début et a la fin. L’exemple donné est donc un triangle, pas un quadrilatère.
+ >Notez l'utilisation d'un double crochet au début et a la fin. Aussi nos tracés seront tous fermés, donc on mets le même point au début et à la fin. L’exemple donné est donc un triangle, pas un quadrilatère.
 
 Arborescence du projet
 ---
@@ -90,6 +92,7 @@ Les **scripts** sont repartis en **3 dossiers** dont le nom commence par le pré
     + **📄`buildings_ways.js`**
    Le second utilise une liste de tuples [lon, lat] permettant de délimiter entièrement le bâtiment.
    (c'est un **Path SVG**, le nom **way** provient de la nomenclature OSM et Mapbox).
+   Cela permets d'avoir un effet de hover sur la totalité batiment.
      >ces fichiers sont mutuellement exclusifs. Ne pas inclure les 2 sur la page index.html.
   Actuellement nous utilisons `buildings_ways.js`.
 
@@ -162,10 +165,18 @@ La requête récupère tous les **Ways** de type **Building**, dans le cadre dé
 
 En clair on peu résumer comme cela : point Sud-Ouest, point Nord-Est
 avec pour chaque point la latitude avant la longitude.
->on définie une diagonale dans ce sens : "/" en commençant par le bas et nous avons notre cadre (Bounding Box en anglais).
+>on défini une diagonale dans ce sens : "/" en commençant par le bas et nous avons notre cadre (Bounding Box en anglais).
 
 voici la **doc** pour l'**API** (a lire avant) : https://wiki.openstreetmap.org/wiki/Overpass_API
 voici la **doc** pour la **syntaxe** ⚠️ _hic sunt dracones_ 🐉 : https://wiki.openstreetmap.org/wiki/Overpass_API/Language_Guide
+
+#### Exporter les resultats de la requette
+
+Cette requette revoie des batiments dont nous n'avons pas besoin.
+Vous pouvez exporter la liste des resultats sous forme d'XML ou de GeoJSON.
+Ensuite, dans cette liste, on peut trier par `id` ceux que l'on veut conserver.
+On peut voir l'`id` d'un `way` sur l'interface web en cliquant sur le polygone (pop-in).
+Il suffit de copier et rechercher dans le fichier exporté pour ne garder que le nécéssaire.
 
 #### Éditer un `Way` (polygone) - ensemble de `Nodes` (point) pour le contour des bâtiments
 Si deux numéros sont fusionnés (considéré comme un seul bâtiment sur OSM)
