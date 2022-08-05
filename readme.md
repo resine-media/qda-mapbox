@@ -42,11 +42,11 @@ On peut lire les notes en commentaire : tout ce qui est entre `/*  */`.
 `  "02" : "maison Truc",  `
 la virgule de fin de ligne **est très importante**.
 
-> __Imbrication__ : *On peut imager la structure du code comme des boites dans des boites.
+> __Imbrication__ : *On peut imager la structure du code comme des boîtes dans des boîtes.
 Les numéros sont rangés par rues, et on retrouve cette structure pour chaque période.*
 
->__Cohérence__ : Ces "boites" sont délimites par des accolades qui fonctionnent par paires : à une ouvrante correspond une fermante.
-Elle ne peuvent pas se croiser, c'est a dire qu'une fermante correspond toujours a l'ouvrante précédente.
+>__Cohérence__ : Ces "boîtes" sont délimites par des accolades qui fonctionnent par paires : à une ouvrante correspond une fermante.
+Elle ne peuvent pas se croiser, c'est a dire qu'une fermante correspond toujours à l'ouvrante précédente.
 
 3. Enregistrer le fichier
 
@@ -78,7 +78,7 @@ Les **scripts** sont repartis en **3 dossiers** dont le nom commence par le pré
 
   il y a un tableau `streets` qui répertorie les rues.
 
-  il y a un tableau associatif multidimensionnel `eraLayers` qui permets d’établir la correspondance précédemment citée.
+  il y a un tableau associatif multidimensionnel `eraLayers` qui permets d’établir la correspondance précédemment citée. (Recherche croisée)
 
   l'imbrication est sous cette forme :
    ` eraLayers[epoque][rue][numero] -> "attribut title au survol" `
@@ -86,13 +86,13 @@ Les **scripts** sont repartis en **3 dossiers** dont le nom commence par le pré
 
   - les fichiers 📄`buildings_points.js` _**OU**_ 📄`buildings_ways.js` :
     + **📄`buildings_points.js`**
-   Permets d'associer chaque bâtiment à un tuple [lon, lat] qui permets d'afficher une pastille en leur centre.
+   Permet d'associer chaque bâtiment à un tuple [lon, lat] qui permets d'afficher une pastille en leur centre.
    (n'est plus utilisé. On le garde au cas ou on ne veut plus les ways.)
    
     + **📄`buildings_ways.js`**
    Le second utilise une liste de tuples [lon, lat] permettant de délimiter entièrement le bâtiment.
    (c'est un **Path SVG**, le nom **way** provient de la nomenclature OSM et Mapbox).
-   Cela permets d'avoir un effet de hover sur la totalité batiment.
+   Cela permets d'avoir un effet de hover sur la totalité du batiment.
      >ces fichiers sont mutuellement exclusifs. Ne pas inclure les 2 sur la page index.html.
   Actuellement nous utilisons `buildings_ways.js`.
 
@@ -112,7 +112,7 @@ contient des fonctions de construction pour éviter les répétitions de code.
  contient les scripts principaux
 
    - **📄`function.js` :**
-  Fonctions principales. Pour l'instant ce fichier contient la fonction `populateNavMenu()` qui permets de créer les 3 boutons colorés en haut a gauche. Ces boutons permettent de choisir le layer (la période) que l'on veut afficher.
+  Fonctions principales. Pour l'instant ce fichier contient la fonction `populateNavMenu()` qui permets de créer les 3 boutons colorés en haut à gauche. Ces boutons permettent de choisir le layer (la période) que l'on veut afficher.
 
    - **📄`main.js` :**
   Le "point d'entrée". Ici on a une brève procédure de calcul du zoom et de l'orientation (s'adapte a la taille de l’écran et a son orientation) puis **on instancie la map**.
@@ -173,7 +173,7 @@ voici la **doc** pour la **syntaxe** ⚠️ _hic sunt dracones_ 🐉 : https://w
 #### Exporter les resultats de la requette
 
 Cette requette revoie des batiments dont nous n'avons pas besoin.
-Vous pouvez exporter la liste des resultats sous forme d'XML ou de GeoJSON.
+Vous pouvez exporter la liste des resultats au format XML ou GeoJSON.
 Ensuite, dans cette liste, on peut trier par `id` ceux que l'on veut conserver.
 On peut voir l'`id` d'un `way` sur l'interface web en cliquant sur le polygone (pop-in).
 Il suffit de copier et rechercher dans le fichier exporté pour ne garder que le nécéssaire.
@@ -186,8 +186,8 @@ Ou si l'on cherche a recréer un bâtiment du passé qui a été détruit mais q
 > Exemple : le _numéro 32 rue de trans_ est maintenant _la Traverse du palais_.
 
 alors il faut éditer la liste des coordonnées en se basant sur les bâtiments voisins.
-Ce n'est pas évidant a première vue, mais avec un peu d'astuce on peut s’épargner des difficultés.
->Le problème vient de la complexité des nombres représentant les latitudes et longitudes, en plus du fait que les distances entre les points considérés soit très courtes. Seules les décimales les moins significatives changent et la comparaison sur une longue liste n'est pas triviale.
+Ce n'est pas évident a première vue, mais avec un peu d'astuce on peut s’épargner des difficultés.
+>Le problème vient de la complexité des nombres représentant les latitudes et longitudes, en plus du fait que les distances entre les points considérés soient très courtes. Seules les décimales les moins significatives changent et la comparaison sur une longue liste n'est pas triviale.
 
 On peut supprimer temporairement un `Node` en enlevant une ligne "latitude - longitude" sur un bâtiment et observer le résultat sur le navigateur. (le polygone perds un sommet : vous avez identifié le point).
 En procédant par élimination on peut trouver les points que l'on veut utiliser pour créer un autre bâtiment.
